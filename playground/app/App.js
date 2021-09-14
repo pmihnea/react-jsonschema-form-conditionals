@@ -1,7 +1,7 @@
 import React from "react";
-import Form from "react-jsonschema-form";
+import Form from "@rjsf/core";
 import applyRules from "../../src/applyRules";
-import conf from "./conf";
+import conf from "./conf/dynamicSelectBoxes.js";
 
 let { schema, uiSchema, rules, rulesEngine, extraActions, formData } = conf;
 

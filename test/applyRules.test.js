@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "react-jsonschema-form";
+import Form from "@rjsf/core";
 import Engine from "json-rules-engine-simplified";
 import applyRules from "../src";
 import sinon from "sinon";
@@ -13,22 +13,22 @@ const schema = {
   properties: {
     firstName: { type: "string" },
     lastName: { type: "string" },
-    name: { type: "string" },
-  },
+    name: { type: "string" }
+  }
 };
 
 const RULES = [
   {
     conditions: {
-      firstName: "empty",
+      firstName: "empty"
     },
     event: {
       type: "remove",
       params: {
-        field: ["lastName", "name"],
-      },
-    },
-  },
+        field: ["lastName", "name"]
+      }
+    }
+  }
 ];
 
 test("Re render on rule change", () => {
@@ -80,8 +80,8 @@ test("onChange called with corrected schema", () => {
     const expSchema = {
       type: "object",
       properties: {
-        firstName: { type: "string" },
-      },
+        firstName: { type: "string" }
+      }
     };
 
     expect(changed.calledOnce).toEqual(true);

@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "react-jsonschema-form";
+import Form from "@rjsf/core";
 import Engine from "json-rules-engine-simplified";
 import applyRules from "../../src";
 import sinon from "sinon";
@@ -12,13 +12,13 @@ let schema = {
   type: "object",
   properties: {
     firstName: { type: "string" },
-    lastName: { type: "string" },
-  },
+    lastName: { type: "string" }
+  }
 };
 
 let uiSchema = {
   firstName: {},
-  lastName: {},
+  lastName: {}
 };
 
 test("no exception on formData undefined", () => {
@@ -28,8 +28,8 @@ test("no exception on formData undefined", () => {
     [
       {
         conditions: { firstName: { is: "An" } },
-        event: { type: "remove", params: { field: "lastName" } },
-      },
+        event: { type: "remove", params: { field: "lastName" } }
+      }
     ],
     Engine
   )(Form);

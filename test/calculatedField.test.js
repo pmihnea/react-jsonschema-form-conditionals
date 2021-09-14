@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "react-jsonschema-form";
+import Form from "@rjsf/core";
 import Engine from "json-rules-engine-simplified";
 import applyRules from "../src";
 import sinon from "sinon";
@@ -13,25 +13,25 @@ const SCHEMA = {
   properties: {
     a: { type: "number" },
     b: { type: "number" },
-    sum: { type: "number" },
-  },
+    sum: { type: "number" }
+  }
 };
 
 const RULES = [
   {
     conditions: {
-      a: { greater: 0 },
+      a: { greater: 0 }
     },
     event: {
-      type: "sum",
-    },
-  },
+      type: "sum"
+    }
+  }
 ];
 
 const EXTRA_ACTIONS = {
   sum: (params, schema, uiSchema, formData) => {
     formData.sum = formData.a + formData.b;
-  },
+  }
 };
 
 test("formData has calculated field specified", () => {

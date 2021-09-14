@@ -1,4 +1,4 @@
-import Form from "react-jsonschema-form";
+import Form from "@rjsf/core";
 import Engine from "json-rules-engine-simplified";
 import applyRules from "../../src";
 
@@ -6,20 +6,20 @@ let schema = {
   type: "object",
   properties: {
     firstName: { type: "string" },
-    lastName: { type: "string" },
-  },
+    lastName: { type: "string" }
+  }
 };
 
 let uiSchema = {
   firstName: {},
-  lastName: {},
+  lastName: {}
 };
 
 let invalidNickName = [
   {
     conditions: { firstName: { is: "An" } },
-    event: { type: "remove", params: { field: "nickName" } },
-  },
+    event: { type: "remove", params: { field: "nickName" } }
+  }
 ];
 
 test("validation happens on initial render", () => {
@@ -31,8 +31,8 @@ test("validation happens on initial render", () => {
 let invalidAction = [
   {
     conditions: { firstName: { is: "An" } },
-    event: { type: "jump" },
-  },
+    event: { type: "jump" }
+  }
 ];
 
 test("validation triggered on invalid action", () => {

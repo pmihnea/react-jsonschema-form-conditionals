@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { deepEquals } from "react-jsonschema-form/lib/utils";
+import { deepEquals } from "@rjsf/core/lib/utils";
 import { isDevelopment, toError } from "./utils";
 import rulesRunner from "./rulesRunner";
 
@@ -23,17 +23,17 @@ export default function applyRules(
           order: PropTypes.number,
           event: PropTypes.oneOfType([
             PropTypes.shape({
-              type: PropTypes.string.isRequired,
+              type: PropTypes.string.isRequired
             }),
             PropTypes.arrayOf(
               PropTypes.shape({
-                type: PropTypes.string.isRequired,
+                type: PropTypes.string.isRequired
               })
-            ),
-          ]),
+            )
+          ])
         })
       ).isRequired,
-      extraActions: PropTypes.object,
+      extraActions: PropTypes.object
     };
 
     PropTypes.checkPropTypes(
@@ -133,7 +133,7 @@ export default function applyRules(
         // Assignment order is important
         let formConf = Object.assign({}, this.props, this.state, {
           onChange: this.handleChange,
-          formData: this.formData,
+          formData: this.formData
         });
         return <FormComponent {...formConf} />;
       }
