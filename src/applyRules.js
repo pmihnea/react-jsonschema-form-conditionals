@@ -69,10 +69,13 @@ export default function applyRules(
         this.handleChange = this.handleChange.bind(this);
         this.updateConf = this.updateConf.bind(this);
         let { formData = {} } = this.props;
-
         this.shouldUpdate = false;
+
         this.state = { schema, uiSchema };
         this.updateConf(formData);
+
+        this.submit = this.submit.bind(this);
+        this.formComponent = null;
       }
 
       componentWillReceiveProps(nextProps) {
@@ -135,7 +138,16 @@ export default function applyRules(
           onChange: this.handleChange,
           formData: this.formData
         });
-        return <FormComponent {...formConf} />;
+        let refCallbackFn = formComponent => {
+          this.formComponent = formComponent;
+        };
+        return <FormComponent {...formConf} ref={refCallbackFn} />;
+      }
+
+      submit() {
+        if (this.formComponent) {
+          this.formComponent.submit();
+        }
       }
     }
 

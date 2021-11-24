@@ -13,6 +13,35 @@ let FormToDisplay = applyRules(
   extraActions
 )(Form);
 
+let formRef;
+const onSubmit = formData => {
+  console.log("Data submitted: ", formData);
+  console.log("Form Ref: ", formRef);
+};
+const onChange = formData => {
+  console.log("Data changed: ", formData);
+  console.log("Form Ref: ", formRef);
+};
+const onFormReference = form => {
+  formRef = form;
+  console.log("Form Reference: ", form);
+};
+function submitForm() {
+  console.log("Submit form...");
+  formRef && formRef.submit();
+}
 export default function() {
-  return <FormToDisplay formData={formData} />;
+  return (
+    <div>
+      <FormToDisplay
+        formData={formData}
+        onSubmit={onSubmit}
+        onChange={onChange}
+        ref={onFormReference}
+      ></FormToDisplay>
+      <button className="btn btn-info" onClick={submitForm}>
+        CUSTOM SUBMIT
+      </button>
+    </div>
+  );
 }
