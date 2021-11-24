@@ -20,7 +20,7 @@ function ArrayFieldWrapperTemplate({
 }
 
 predicate.hasPayoutGroups = Merchant => {
-  console.log("hasPayoutGroups called, Merchant:", Merchant);
+  /*  console.log("hasPayoutGroups called, Merchant:", Merchant);*/
   return (
     Merchant &&
     Merchant.SettlementBankAccounts &&
@@ -150,13 +150,13 @@ const conf = {
   ],
   extraActions: {
     enrichPayoutGroups: function(params, schema, uiSchema, formData) {
-      console.log(
+      /*      console.log(
         "enrichPayoutGroups called",
         params,
         schema,
         uiSchema,
         formData
-      );
+      );*/
       formData.Merchant.SettlementBankAccounts.forEach(function(sba) {
         if (sba.PayoutGroups) {
           sba.PayoutGroups.forEach(function(pg) {
@@ -176,13 +176,13 @@ const conf = {
       });
     },
     enrichPayoutGroupRef: function(params, schema, uiSchema, formData) {
-      console.log(
+      /*      console.log(
         "enrichPayoutGroupRef called",
         params,
         schema,
         uiSchema,
         formData
-      );
+      );*/
       schema.properties.Merchant.properties.PayoutGroupRef.properties.refId.anyOf = formData.Merchant.SettlementBankAccounts.flatMap(
         sba => (sba.PayoutGroups ? sba.PayoutGroups : [])
       ).map(function(pg) {
